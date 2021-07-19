@@ -1,0 +1,18 @@
+server {
+	root /var/www/autoscan/;
+	server_name autoscan.localhost;
+
+	index index.php index.html;
+
+	location / {
+		try_files $uri $uri/ /index.php?query_string;
+	}
+
+	location ~ \.php$ {
+		fastcgi_index index.php;
+		fastcgi_keep_conn on;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_pass unix:/run/php-fpm/user.sock;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	}
+}

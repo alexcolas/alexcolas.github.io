@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+	DocumentRoot "/var/www/autoscan/"
+	ServerName autoscan.localhost
+	ServerAlias autoscan.localhost
+	ErrorLog "/var/log/httpd/autoscan.local-error_log"
+	CustomLog "/var/log/httpd/autoscan.local-acces_log" common
+	
+	<Directory "/var/www/autoscan/">
+		Options Indexes FollowSymlinks
+		AllowOverride All
+		Require all granted
+	</Directory>
+</VirtualHost>
